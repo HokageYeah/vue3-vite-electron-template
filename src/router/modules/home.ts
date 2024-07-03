@@ -1,4 +1,4 @@
-import { type RouteRecordRaw } from 'vue-router'
+import { type RouteRecordRaw } from 'vue-router';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -8,9 +8,9 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'home',
         name: 'Home',
-        component: () => import('@/views/home/index.vue'),
-      },
+        component: () => import('@/views/home/index.vue')
+      }
     ]
   }
-]
-export default routes
+];
+export default routes;

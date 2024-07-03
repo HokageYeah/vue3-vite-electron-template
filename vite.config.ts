@@ -1,19 +1,18 @@
-import { fileURLToPath, URL } from 'node:url'
 import { resolve } from 'node:path';
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 // vite+electron打包和运行插件
-import { ElectronDevPlugin } from './plugins/vite.electron.dev'
-import { ElectronBuildPlugin } from './plugins/vite.electron.build'
-import electronRenderer from "vite-plugin-electron-renderer"
+import electronRenderer from 'vite-plugin-electron-renderer';
 
 // 按需导入、自动导入插件
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import AutoImportTypes from 'auto-import-types';
+import { ElectronBuildPlugin } from './plugins/vite.electron.build';
+import { ElectronDevPlugin } from './plugins/vite.electron.dev';
 
 function pathResolve(dir: string) {
   return resolve(process.cwd(), '.', dir);
@@ -30,10 +29,7 @@ export default defineConfig({
     AutoImportTypes(),
     AutoImport({
       dts: 'auto-imports.d.ts',
-      imports: [
-        'vue',
-        'uni-app',
-      ],
+      imports: ['vue', 'uni-app'],
       exclude: ['createApp'],
       eslintrc: {
         enabled: true,
@@ -62,4 +58,4 @@ export default defineConfig({
       }
     ]
   }
-})
+});
