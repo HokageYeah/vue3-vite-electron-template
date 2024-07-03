@@ -22,3 +22,6 @@
     * 4、优化构建速度： Vite 的构建器能够实现快速的开发构建，与 Electron 的需求相符，同时支持按需加载，可以显著提升应用的加载速度和性能。
     * 5、集成 Electron 特定功能： 提供一些特定于 Electron 渲染进程的功能支持，如 Electron API 的自动注入，使得在开发过程中可以方便地调用 Electron 提供的原生 API。
     * 6、灵活的配置选项： 允许开发者根据项目的具体需求进行配置，包括自定义构建输出目录、配置开发服务器选项以及其他 Vite 和 Electron 的相关配置。
+
+## eslint+prettier问题解决
+* [Delete `␍`eslint(prettier/prettier)](https://blog.csdn.net/weixin_60941411/article/details/135538432)
