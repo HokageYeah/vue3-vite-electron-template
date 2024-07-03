@@ -1,5 +1,5 @@
 <template>
-  <div>{{ homeTitle }}</div>
+  <div class="container">{{ homeTitle }}</div>
   <HomeTest msg="传入的信息" />
 </template>
 
@@ -13,4 +13,8 @@ export default {
 const homeTitle = ref('这个是home-ref');
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped>
+.container {
+  background-color: aqua;
+}
+</style>
