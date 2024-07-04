@@ -11,6 +11,7 @@ import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import AutoImportTypes from 'auto-import-types';
+import PiniaAutoRefs from 'pinia-auto-refs';
 import { ElectronBuildPlugin } from './plugins/vite.electron.build';
 import { ElectronDevPlugin } from './plugins/vite.electron.dev';
 
@@ -29,7 +30,13 @@ export default defineConfig({
     AutoImportTypes(),
     AutoImport({
       dts: 'auto-imports.d.ts',
-      imports: ['vue', 'uni-app'],
+      imports: [
+        'vue',
+        'pinia',
+        {
+          '@/helper/pinia-auto-refs': ['useStore']
+        }
+      ],
       exclude: ['createApp'],
       eslintrc: {
         enabled: true,
@@ -43,6 +50,11 @@ export default defineConfig({
       extensions: ['vue'],
       dts: 'components.d.ts',
       resolvers: [ElementPlusResolver()]
+    }),
+    PiniaAutoRefs({
+      storeDir: 'src/stores',
+      excludes: ['index'],
+      outputFile: 'src/helper/pinia-auto-refs.ts'
     })
   ],
   base: './', // 默认是绝对路径， 要改成相对路径，不然会白屏

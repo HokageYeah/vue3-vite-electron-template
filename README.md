@@ -23,5 +23,8 @@
     * 5、集成 Electron 特定功能： 提供一些特定于 Electron 渲染进程的功能支持，如 Electron API 的自动注入，使得在开发过程中可以方便地调用 Electron 提供的原生 API。
     * 6、灵活的配置选项： 允许开发者根据项目的具体需求进行配置，包括自定义构建输出目录、配置开发服务器选项以及其他 Vite 和 Electron 的相关配置。
 
+* "pinia-auto-refs": 这个库是Pinia的一个插件，用于自动创建和引用store实例的全局变量。通常情况下，你需要在Vue组件中手动导入和使用store实例，而"pinia-auto-refs"可以简化这个过程。它会自动将store实例绑定到Vue实例的$store属性上，从而使你可以在组件中直接访问和使用store实例，而无需手动导入。
+    - [pinia-auto-refs](https://github.com/Allen-1998/pinia-auto-refs)
+
 ## eslint+prettier问题解决
 * [Delete `␍`eslint(prettier/prettier)](https://blog.csdn.net/weixin_60941411/article/details/135538432)
