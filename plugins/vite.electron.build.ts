@@ -1,11 +1,12 @@
 // 生产环境的插件electron
-import type { Plugin } from 'vite'
-import fs from 'node:fs'
-import * as electronBuilder from 'electron-builder'
-import path from 'node:path'
+import fs from 'node:fs';
+import path from 'node:path';
+import type { Plugin } from 'vite';
+import * as electronBuilder from 'electron-builder';
 // 打包代码单独封装
 const buildBackground = () => {
   // 将background.ts文件编译成js文件
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   require('esbuild').buildSync({
     entryPoints: ['src/background.ts'],
     bundle: true,
@@ -13,8 +14,8 @@ const buildBackground = () => {
     platform: 'node',
     target: 'node12',
     external: ['electron']
-  })
-}
+  });
+};
 
 // 打包 需要先等vite打完包之后就有index.html文件了， 在执行electron-build打包
 export const ElectronBuildPlugin = (): Plugin => {
@@ -22,30 +23,30 @@ export const ElectronBuildPlugin = (): Plugin => {
     name: 'electron-build',
     closeBundle() {
       // 防止没有运行pnpm run dev 生成dist打包文件，而是直接运行pnpm run build的情况， 直接运行build的话就没有dist/background.js 会报错
-      buildBackground()
+      buildBackground();
 
       // 打包前先判断是否有打包输出目录release，如果有则先清空
-      const distPath = path.join(process.cwd(), 'release')
-      console.log('打包输出目录-----', distPath)
+      const distPath = path.join(process.cwd(), 'release');
+      console.log('打包输出目录-----', distPath);
 
       if (fs.existsSync(distPath)) {
-        fs.rmdirSync(distPath, { recursive: true })
+        fs.rmdirSync(distPath, { recursive: true });
       }
       // electron-builder 需要指定package.json main
       // 需要操作package.json文件
-      const json = JSON.parse(fs.readFileSync('package.json', 'utf-8'))
-      json.main = 'background.js'
-      fs.writeFileSync('dist/package.json', JSON.stringify(json, null, 4))
-      console.log('打包了json----------------------', json)
+      const json = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
+      json.main = 'background.js';
+      fs.writeFileSync('dist/package.json', JSON.stringify(json, null, 4));
+      console.log('打包了json----------------------', json);
       // bug electron-builder 他会给你下载垃圾文件
-      fs.mkdirSync('dist/node_modules')
+      fs.mkdirSync('dist/node_modules');
       electronBuilder.build({
         config: {
           appId: 'com.exampleYeah.app',
-          productName: '桌面工具', //应用名称
+          productName: '桌面工具', // 应用名称
           directories: {
-            output: path.join(process.cwd(), 'release'), //输出目录
-            app: path.join(process.cwd(), 'dist') //app目录
+            output: path.join(process.cwd(), 'release'), // 输出目录
+            app: path.join(process.cwd(), 'dist') // app目录
           },
           win: {
             icon: 'build/electron-icon/icon.ico',
@@ -82,8 +83,8 @@ export const ElectronBuildPlugin = (): Plugin => {
           },
           asar: true, // 帮我们打包成一个压缩包
           nsis: {
-            oneClick: false, //取消一键安装
-            allowToChangeInstallationDirectory: true, //允许用户选择安装目录
+            oneClick: false, // 取消一键安装
+            allowToChangeInstallationDirectory: true, // 允许用户选择安装目录
             // 允许请求提升。 如果为false，则用户必须使用提升的权限重新启动安装程序。
             allowElevation: true,
             // 安装图标
@@ -98,7 +99,7 @@ export const ElectronBuildPlugin = (): Plugin => {
             createStartMenuShortcut: true
           }
         }
-      })
+      });
     }
-  }
-}
+  };
+};
