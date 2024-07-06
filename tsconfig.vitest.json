@@ -1,9 +1,7 @@
 {
   "extends": "./tsconfig.app.json",
   "exclude": [],
-  "include": [
-    "plugins/**/*.ts"
-  ],
+  "include": ["plugins/**/*.ts"],
   "compilerOptions": {
     "composite": true,
     "lib": [],
