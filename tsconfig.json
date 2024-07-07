@@ -31,7 +31,7 @@
       "@/*": ["./src/*"] /* 路径映射，相对于baseUrl */
     },
     "lib": ["esnext", "dom"],
-    "types": ["node", "vite/client", "vue"]
+    "types": ["node", "vite/client", "vue", "element-plus/global"]
   },
   "exclude": ["node_modules", "dist"],
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
