@@ -11,6 +11,9 @@ export default {
 
 <script setup lang="ts">
 const homeTitle = ref('这个是home-ref');
+setInterval(() => {
+  console.log('时间打印');
+}, 1000);
 </script>
 
 <style scoped>
